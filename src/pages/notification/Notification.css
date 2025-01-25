@@ -1,0 +1,155 @@
+.NotificationContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.NotificationContainer2 {
+    margin-top: 100px;
+    height: calc(100vh - 100px);
+}
+
+.Notifications {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15rem;
+    width: 100%;
+    height:100%;
+}
+
+.NotificationTop {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 15rem);
+    z-index: 1000;
+    background-color: white;
+}
+
+.NotificationTitle {
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.NotificationSwitch {
+    display: flex;
+    justify-content: space-around;
+    height: 3rem;
+    cursor: pointer;
+}
+
+.NotificationButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NotificationButtonActive {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.1rem solid black;
+}
+
+.NotificationButtonActive:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.NotificationButton:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.RequestButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.RequestButtonActive {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.1rem solid black;
+}
+
+.RequestButton:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.RequestButtonActive:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.Notification {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.05rem solid black;
+    cursor: pointer;
+}
+
+.Notification:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.NotificationIcon {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.NotificationContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.NotificationContentContent {
+    padding-bottom: 0.25rem;
+}
+
+.NotificationLinkWrapper {
+    color: inherit;
+    text-decoration: none;
+}
+
+.noNotification {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 19rem;
+}
+
+.NotificationSpinner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 840px) {
+    .Notifications {
+        margin-left: 5rem;
+    }
+
+    .NotificationTop {
+        width: calc(100% - 5rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .Notifications {
+        margin-left: 0;
+        margin-bottom: 5rem;
+    }
+
+    .NotificationTop {
+        width: 100%;
+    }
+}

@@ -1,0 +1,45 @@
+.MenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+.MenuContainer {
+    position: fixed;
+    top: 13rem;
+    left:5.5rem;
+    width:10rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    box-shadow: 1px 2px 5px 0px #e3e3e3;
+    z-index: 10001;
+}
+
+.MenuLogout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.MenuLogout span{
+    margin: 0.75rem 1rem;
+}
+
+.MenuContainer:hover{
+    background-color: rgb(250,250,250);
+}
+
+@media (max-width:600px) {
+    .MenuContainer {
+        top: auto;
+        left: auto;
+        right: 1.5rem;
+        bottom:2.5rem;
+    }
+}

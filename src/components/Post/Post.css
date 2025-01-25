@@ -1,0 +1,295 @@
+.PostContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 1rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    
+}
+
+.PostContainer2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 4rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.PostTopTop {
+    position: fixed;
+    top: 0;
+    height: 3rem;
+    width:calc(100% - 15rem);
+    background-color: white;
+    z-index: 1000;
+}
+
+.PostTopTop2 {
+    position: sticky;
+    top: 3rem;
+    height: 3rem;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+}
+
+
+.PostTopTopContainer {
+    display: flex;
+    height: 100%;
+    width:100%;
+}
+
+.PostTopTopBack {
+    position: absolute;
+    top: 0.6rem;
+    left: 1rem;
+    width:2rem;
+    text-align: center;
+    border-radius: 15%;
+}
+
+.PostTopTopBack:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.PostTopTopTitle {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.PostTop {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+
+.PostTopBar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.PostTopTime {
+    margin-left: 0.25rem;
+}
+
+.PostTopTimeLeft {
+    font-size: 1.5rem;
+}
+
+.PostTopTimeRight {
+    margin-left: 1.25rem;
+}
+
+.PostContent {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.PostContentComment {
+    display: inline-block;
+    margin-top: 0.75rem;
+    margin-left: 0.25rem;
+    font-size: 1rem;
+}
+
+.PostContentImage {
+    width: 99%;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+}
+
+.PostBottom {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.PostBottomImage {
+    width: 2rem;
+    margin-right: 0.75rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.PostBottomName {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.PostBottomRight {
+    display: flex;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.PostBottomLikes {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.PostBottomLikes2 {
+    display: flex;
+    align-items: center;
+    margin-right: 0rem;
+}
+
+.PostBottomLikesImage {
+    margin-right: 0.25rem;
+    cursor: pointer;
+}
+
+.PostBottomComment {
+    display: flex;
+    align-items: center;
+}
+
+.PostBottomCommentIcon {
+    margin-right: 0.3rem;
+    cursor: pointer;
+}
+
+.postLinkWrapper {
+    text-decoration: none;
+    color: inherit;
+    margin-left: auto;
+}
+
+.PostMenuBar {
+    margin-left: auto;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+
+.PostMenuClose {
+    margin-top: 0;
+    display: inline-block;
+    margin-left: auto;
+    position: absolute;
+    top: 0.25rem;
+    left: -1rem;
+    cursor: pointer;
+}
+
+.PostMenuEdit {
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+}
+
+.PostMenuEdit span {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 0.25rem;
+}
+
+.PostMenuDelete {
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+}
+
+.PostMenuDelete span {
+    cursor: pointer;
+    align-items: center;
+    margin-right: 0.25rem;
+    display: flex;
+}
+
+.PostEditInp {
+    border: none;
+    outline: none;
+    margin-left: 0.5rem;
+    height: 1rem;
+}
+
+.PostEditButton {
+    border: white;
+    width: 3rem;
+    height: 1.75rem;
+    background-color: cornflowerblue;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    color: white;  
+    margin-left: auto; 
+    margin-right: 1rem;
+}
+
+.PostEditForm {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.PostEditPicture {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    color: blue;
+}
+
+.PostEditPicture span {
+    color: black;
+}
+
+@media (max-width:1180px) {
+    .PostContainer,
+    .PostContainer2 {
+        width: 55%;
+    }
+}
+
+@media (max-width:1080px) {
+    .PostContainer,.PostContainer2 {
+        width: 60%;
+    }
+}
+
+@media (max-width:960px) {
+    .PostContainer,.PostContainer2 {
+        width: 70%;
+    }
+}
+
+@media (max-width:840px) {
+    .PostContainer,.PostContainer2 {
+        width:75%;
+    }
+
+    .PostTopTop {
+        width: calc(100% - 5rem);
+    }
+}
+
+@media (max-width:600px) {
+    .PostContainer,.PostContainer2 {
+        width: 87.5%;
+    }
+
+    .PostTopTop {
+        width: 100%;
+    }
+}
+
+

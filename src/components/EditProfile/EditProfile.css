@@ -1,0 +1,156 @@
+.EditProfileContainer {
+    margin-left: 15rem;
+    width: calc(100% - 15rem);
+}
+
+.EditProfileTop {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+
+.EditProfileTopBack {
+    position: absolute;
+    left: 1.5rem;
+    cursor: pointer;
+    width: 2rem;
+    text-align: center;
+    border-radius: 15%;
+}
+
+.EditProfileTopBack:hover {
+    background-color: rgb(250,250,250);
+}
+
+.EditProfileTopSave {
+    position: absolute;
+    right: 1.5rem;
+    cursor: pointer;
+    color: blue;
+}
+
+.EditProfileTopSave:hover {
+    color: rgb(108, 108, 250);
+}
+
+.EditProfileIcon {
+    margin-top: 2rem;
+}
+
+.EditProfileIconImage {
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-left: 20%;
+    object-fit: cover;
+}
+
+.EditProfileName,
+.EditProfileDesc {
+    margin-top: 1.5rem;
+    border-bottom: 0.005rem solid rgb(222, 221, 221);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.EditProfileNameName,
+.EditProfileDescDesc {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    cursor: pointer;
+    
+}
+
+.EditProfileDescDesc {
+    height: auto;
+    margin-top: 1rem;
+}
+
+
+.EditProfileNameName input,
+.EditProfileDescDesc textarea {
+    width: 60%;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.EditProfileDescDesc textarea {
+    height: 10rem;
+}
+
+.EditProfileNameHeading,
+.EditProfileDescHeading {
+    width: 60%;
+}
+
+.EditProfileSpinner {
+    margin-left: 15rem;
+    width: calc(100% - 15rem);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:960px) {
+    .EditProfileIconImage {
+        margin-left: 15%;
+    }
+
+    .EditProfileNameName input,
+    .EditProfileDescDesc textarea {
+        width:70%
+    }
+
+    .EditProfileNameHeading,
+    .EditProfileDescHeading {
+        width: 70%;
+    }
+}
+
+@media (max-width:840px) {
+    .EditProfileContainer {
+        margin-left: 5rem;
+        width: calc(100% - 5rem);
+    }
+
+    .EditProfileSpinner {
+        margin-left: 5rem;
+        width: calc(100% - 5rem);
+    }
+}
+
+@media (max-width:600px) {
+    .EditProfileContainer {
+        margin-left: 0rem;
+        width: 100%;
+    }
+
+        .EditProfileIconImage {
+            margin-left: 10%;
+        }
+    
+        .EditProfileNameName input,
+        .EditProfileDescDesc textarea {
+            width: 80%
+        }
+    
+        .EditProfileNameHeading,
+        .EditProfileDescHeading {
+            width: 80%;
+        }
+
+    .EditProfileSpinner {
+        margin-left: 0rem;
+        width: 100%;
+    }
+}

@@ -1,0 +1,142 @@
+.LoginContainer {
+    display: flex;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.LoginLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginLeftContainer {
+    
+}
+
+.LoginLeftTitle {
+    color: #394091;
+    font-size: 2.5rem;
+}
+
+.LoginLeftDesc {
+}
+
+.LoginLight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginLightForm {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 3px 11px -6px #777777;
+    border-radius: 1%;
+    width: 32rem;
+    height: 21rem;
+    justify-content: space-around;
+}
+
+.LoginLightTop {
+    text-align: center;
+}
+
+.LoginLightEmail {
+    width: 90%;
+    margin: 0 auto;
+    height:11%;
+    border: 1px solid #777777;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+}
+
+.LoginLightPassword {
+    width: 90%;
+    margin: 0 auto;
+    height: 11%;
+    border: 1px solid #777777;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+}
+
+.LoginLightLogin {
+    width: 93%;
+    margin: 0 auto;
+    height: 11%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #394091;
+    color: white;
+    cursor: pointer;
+}
+
+.LoginLightForget {
+    text-align: center;
+    color: #777777;
+    position: relative;
+    top: -0.25rem;
+}
+
+.LoginLightNew {
+    width: 60%;
+    margin: 0 auto;
+    height: 11%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #37a33f;
+    color: white;
+    position: relative;
+    top: -0.5rem;
+    display: flex;
+    text-decoration: none;
+}
+
+.LoginLightNewButton {
+    border: none;
+    background-color: #37a33f;
+    margin: auto auto;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width:1000px) {
+    .LoginContainer {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .LoginLeft {
+        margin-bottom: 3rem;
+    }
+
+
+}
+
+@media (max-width:600px) {
+    .LoginLightForm {
+        width: 30rem;
+        height: 23rem;
+    }
+}
+
+@media (max-width:500px) {
+    .LoginLightForm {
+        width: 26rem;
+        height: 25rem;
+    }
+}
+
+@media (max-width:450px) {
+    .LoginLightForm {
+        width: 24rem;
+        height: 26rem;
+    }
+}
+
+@media (max-width:400px) {
+    .LoginLightForm {
+        width: 22rem;
+        height: 26rem;
+    }
+}

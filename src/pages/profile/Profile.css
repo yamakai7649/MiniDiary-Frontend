@@ -1,0 +1,208 @@
+.ProfileTimelineContainer {
+    margin: 0;
+    width: 100%;
+}
+
+.ProfileContainer {
+    display: flex;
+    width: 100%;
+}
+
+.ProfileLight {
+    width:100%;
+    min-height: 100vh;
+    margin-left: 15rem;
+}
+
+.ProfileLightSpinner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfileLightTop {
+    margin-top: 0;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+}
+
+
+.ProfileLightTopUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto ;
+    position: relative;
+}
+
+.ProfileLightTopIcon {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ProfileLightTopName {
+    margin-top: 0.25rem;
+}
+
+.ProfileLightTopDesc {
+    margin-top: 0.75rem;
+    color:#626363;
+}
+
+.ProfileLightTopFollowDisp {
+    display: flex;
+    margin-top: 0.1rem;
+}
+
+.ProfileLightTopFollowDisp div {
+
+}
+
+.ProfileLightTopFollowDisp small {
+    margin-right: 0.3rem;
+}
+
+.ProfileLightTopFollowRight {
+    margin-left: 0.5rem;
+}
+
+.ProfileLightTopFollow {
+    border-radius: 0.5rem;
+    border: solid rgb(122, 122, 122) 0.075rem;
+    background-color: white;
+    color: black;
+    height: 3rem;
+    width: 9rem;
+    cursor: pointer;
+    position: absolute;
+    top:2rem;
+    right: 2rem;
+}
+
+.ProfileLightTopFollow2 {
+    border-radius: 0.5rem;
+    border: none;
+    color: white;
+    background-color: black;
+    height: 3rem;
+    width: 9rem;
+    cursor: pointer;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.ProfileLightTopFollow:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.ProfileLightTopFollow2:hover {
+    background-color: rgb(97, 97, 97);
+}
+
+.ProfileLightTopEdit {
+    cursor: pointer;
+    color: blue;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.ProfileLightTopEdit:hover {
+    color: rgb(108, 108, 250);
+}
+
+.ProfileLightBottom {
+    width: 100%;
+}
+
+.ProfileLightBottomTimeline {
+    width: 100%;
+    min-height: 25rem;
+    position: relative;
+}
+
+.ProfileTop {
+    width: 100%;
+    height: 3rem;
+    margin-top: 0.5rem;
+    position: sticky;
+    z-index: 1000;
+    top:0;
+    background-color: white;
+}
+
+.ProfileSwitch {
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    height: 100%;
+}
+
+.DiaryButton,
+.ProfileButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DiaryButtonActive,
+.ProfileButtonActive {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.1rem solid black;
+}
+
+.DiaryButtonActive:hover,
+.ProfileButtonActive:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.DiaryButton:hover,
+.ProfileButton:hover {
+    background-color: rgb(247, 246, 246);
+}
+
+@media (max-width: 1080px) {
+    .ProfileLightTopUser {
+        width: 65%;
+    }
+}
+
+@media (max-width: 960px) {
+    .ProfileLightTopUser {
+        width: 70%;
+    }
+}
+
+@media (max-width: 840px) {
+    .ProfileLight {
+        margin-left: 5rem;
+    }
+
+    .ProfileLightTopUser {
+        width: 75%;
+    }
+}
+
+@media (max-width: 600px) {
+    .ProfileLight {
+        margin-left: 0;
+    }
+
+    .ProfileTimelineContainer{
+        margin-bottom: 5rem;
+    }
+
+    .ProfileLightTopUser {
+        width: 85%;
+    }
+}

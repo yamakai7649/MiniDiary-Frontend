@@ -1,0 +1,228 @@
+.TimelineContainer {
+    margin-left: 15rem;
+    width: calc(100% - 15rem);
+    min-height: 100vh;
+}
+
+
+.TimelineTop {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 15rem);
+    z-index: 1000;
+    background-color: white;
+}
+
+.TimelineTopTop {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.TimelineTitle {
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.TimelineSwitch {
+    display: flex;
+    justify-content: space-around;
+    height: 3rem;
+    cursor: pointer;
+}
+
+.TimelineButton,.FollowingButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TimelineButtonActive,.FollowingButtonActive {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.1rem solid black;
+}
+
+.TimelineButtonActive:hover,.FollowingButtonActive:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.TimelineButton:hover,.FollowingButton:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.TimelineContainer2 {
+    margin-top: 100px;
+}
+
+
+.TimelinePostContainer {
+    display: flex;
+    width: 100%;
+}
+
+.TimelinePostContainer2 {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.TimelinePostContainer:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.TimelinePostContainer2:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.CommentNumber {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.CommentNumberContainer {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.CommentNumberIcon {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+.CreateDiaryContainer {
+    position: fixed;
+    z-index: 10000;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.CreateDiary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: black;
+    cursor: pointer;
+}
+
+.CreateDiary:hover {
+    background-color: rgb(57, 56, 56);
+}
+
+.CreateDiaryIcon {
+    color: white;
+}
+
+.ProfileNoDiary {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.TimelineNoDiary {
+    margin: auto 0;
+    margin-top: 22.75rem;
+    text-align: center;
+}
+
+.PostTimelineSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.PostTimelineSpinner2 {
+    width: 100%;
+    height: calc(100vh - 100px);
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CommentTimelineSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.CommentTimelineSpinner2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:1080px) {
+
+    .CommentNumberContainer {
+        width: 65%;
+    }
+}
+
+@media (max-width:960px) {
+
+    .CommentNumberContainer {
+        width: 70%;
+    }
+}
+
+@media (max-width: 840px) {
+    .TimelineContainer {
+        margin-left: 5rem;
+        width: calc(100% - 5rem) ;
+    }
+
+    .CommentNumberContainer {
+        width: 75%;
+    }
+
+
+    .TimelineTop {
+        width: calc(100% - 5rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .TimelineContainer {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .TimelineContainer2 {
+        margin-bottom: 5rem;
+    }
+
+    .CommentNumberContainer {
+        width: 90%;
+    }
+    
+    .TimelineTop {
+        width: 100%;
+    }
+
+    .CreateDiaryContainer {
+        bottom: 6rem;
+    }
+}

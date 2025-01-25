@@ -1,0 +1,233 @@
+.DiaryContainer {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.5);
+    z-index: 10000;
+}
+
+.Diary {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 50%;
+    border-radius: 2rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Diary2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 95%;
+    border-radius: 2rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.DiaryContent {
+    position: relative;
+    margin-top: 2rem;
+    width: 90%;
+    height: 60%;
+    border: solid rgb(95, 94, 94) 0.1rem;
+    border-radius: 1rem;
+}
+
+.DiaryContent2 {
+    position: relative;
+    margin-top: 2rem;
+    width: 90%;
+    height: 77.5%;
+    border: solid rgb(95, 94, 94) 0.1rem;
+    border-radius: 1rem;
+    overflow: auto;
+}
+
+.DiaryTopTime {
+    margin-left: 1.75rem;
+    margin-top: 0.75rem;
+}
+
+.DiaryTopTimeLeft {
+    font-size: 1.3rem;
+    margin-right: 0.75rem;
+}
+
+.DiaryPreview {
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 0.625rem;
+}
+
+.DiaryPreviewImage {
+    width: 100%;
+    border-radius: 1rem;
+    height: 100%;
+}
+
+.DiaryPreviewCloser {
+    position: absolute;
+    top: 0.75rem;
+    right:0.75rem;
+    width:2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.DiaryPreviewCloser:hover {
+    background-color: rgba(45, 45, 45, 0.5);
+}
+
+.DiaryTextarea {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 70%;
+    border: none;
+    outline:none;
+    resize: none;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+}
+
+.DiaryTextarea2 {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 39%;
+    border: none;
+    outline: none;
+    resize: none;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.DiaryPictureButton {
+    width: 2rem;
+    height:2rem;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.DiaryPictureButton:hover {
+    background: rgb(97, 97, 97);
+}
+
+.DiaryPictureButtonIcon {
+    color: white;
+    font-size: 1rem;
+}
+
+.DiaryButtons {
+    margin: 1.75rem 0;
+    display: flex;
+    justify-content:space-evenly;
+    width: 100%;
+    height: 4rem;
+}
+
+.DiaryButton2 {
+    width: 40%;
+    height: 80%;
+    background-color: black;
+    border-radius: 0.25rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
+
+.DiaryButton2:hover {
+    background: rgb(97, 97, 97);
+}
+
+.CancelButton {
+    width: 40%;
+    height: 80%;
+    border: solid rgb(209, 208, 208) 0.075rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.CancelButton:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+@media (max-width:1200px) {
+    .Diary,
+    .Diary2 {
+        width: 45%;
+    }
+}
+
+@media (max-width:1080px) {
+
+    .Diary,
+    .Diary2 {
+        width: 50%;
+    }
+}
+
+@media (max-width:960px) {
+
+    .Diary,
+    .Diary2 {
+        width: 60%;
+    }
+}
+
+@media (max-width:840px) {
+
+    .Diary,
+    .Diary2 {
+        width: 75%;
+    }
+
+}
+
+@media (max-width:600px) {
+
+    .Diary,
+    .Diary2 {
+        width: 85%;
+    }
+
+}

@@ -1,0 +1,11 @@
+.homeContainer {
+    display:flex;
+    width:100%;   
+}
+
+@media (max-width: 600px) {
+    .homeContainer {
+        flex-direction: column-reverse;
+    }
+
+}

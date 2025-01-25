@@ -1,0 +1,121 @@
+.Comment {
+    margin-bottom: 5rem;
+}
+
+.CommentContainerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.CommentContainerContainer:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.CommentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+    
+}
+
+.CommentTop {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.CommentTopImage {
+    width: 1.5rem;
+    margin-right: 0.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.CommentTopName {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.CommentTopTime {
+    font-size: 0.7rem;
+}
+
+.CommentContent {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.CommentBottom {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.CommentBottomLikes {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.CommentBottomLikesImage {
+    width: 1.75rem;
+    margin-right: 0.25rem;
+}
+
+.CommentBottomComment {
+    margin-left: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.CommentLinkWrapper {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width:1080px) {
+
+    .CommentTop,
+    .CommentContent {
+        width: 65%;
+    }
+}
+
+@media (max-width:960px) {
+
+    .CommentTop,
+    .CommentContent {
+        width: 70%;
+    }
+}
+
+@media (max-width:840px) {
+
+    .CommentTop,
+    .CommentContent {
+        width: 75%;
+    }
+}
+
+@media (max-width:600px) {
+
+    .CommentTop,
+    .CommentContent {
+        width: 90%;
+    }
+
+}
