@@ -68,7 +68,7 @@ export default function Sidebar() {
                 <Link className='linkWrapper' to={`/profile/${user?.username}`} style={{ textDecoration: "none", color: "black" }}>
                 <div className="SidebarProfile">
                     <img className='SidebarProfileImg' src={user?.profilePicture ?
-                  PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                  user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
               } />
                             <span className="SidebarProfileButton">{user?.username}</span>                      
                 </div>

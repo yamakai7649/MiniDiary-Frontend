@@ -59,7 +59,7 @@ export default function Register() {
         password: password.current.value,
       }
       await axios.post("/auth/register", user);
-      const res = await axios.post("auth/login", user);
+      const res = await axios.post("auth/login", user,{ withCredentials: true });
       await loginCall(res.data, dispatch);
       window.location.reload();
     } catch (err) {

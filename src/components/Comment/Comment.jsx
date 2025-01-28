@@ -49,7 +49,7 @@ export default function Comment({ comment,post }) {
           <div className="CommentTop">
             <Link className='CommentLinkWrapper' to={`/profile/${user.username}`}>
               <img src={user.profilePicture ?
-                PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
               } alt="" className="CommentTopImage" />
             </Link>
             <strong className="CommentTopName">{user.username}</strong>

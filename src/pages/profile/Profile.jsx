@@ -47,7 +47,7 @@ export default function Profile({ comment }) {
         } finally {
             setTimeout(() => {
                 setIsLoading(false);
-            },1000)
+            },500)
         }
     }, [currentUser?.followings, user._id]);
 
@@ -96,7 +96,7 @@ export default function Profile({ comment }) {
                         <div className="ProfileLightTop">
                             <div className="ProfileLightTopUser">
                                 <div className="ProfileLightTopDetails">
-                                    <img className='ProfileLightTopIcon' src={user.profilePicture ? PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" />
+                                    <img className='ProfileLightTopIcon' src={user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" />
                                     <h2 className='ProfileLightTopName'>{user.username}</h2>
                                     <div className="ProfileLightTopFollowDisp">
                                         <div>

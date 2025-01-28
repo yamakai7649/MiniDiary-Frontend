@@ -29,7 +29,7 @@ export default function Search() {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                },500)
+                },250)
             }
         }
         fetchRandomUser();
@@ -70,7 +70,7 @@ export default function Search() {
                                     <div className="SearchRecommendationPersonContainer" >
                                         <div className="SearchRecommendationPerson">
                                             <img src={user?.profilePicture ?
-                                                PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="SearchRecommendationPersonIcon" />
+                                                user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="SearchRecommendationPersonIcon" />
                                             <div className="SearchRecommendationPersonMain">
                                                 <div className="SearchRecommendationPersonUsername">{user.username}</div>
                                                 <div className="SearchRecommendationPersonFollow">

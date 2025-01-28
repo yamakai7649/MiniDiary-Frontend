@@ -5,7 +5,7 @@ export const fetchSessionUser = createAsyncThunk(
     "auth/user",
     async (_, ThunkAPI) => {
         try {
-            const res = await axios.get("/auth/user");
+            const res = await axios.get("/auth/user",{ withCredentials: true });
             //console.log(res);
             if (!res) return null;
             return res.data;

@@ -50,7 +50,7 @@ export default function Share({ comment }) {
       <div className="ShareContainerContainer">
     <form className='ShareContainer' onSubmit={handleSubmit}>
               <img className='ShareTopImage' src={user?.profilePicture ?
-                  PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                  user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
               } />
                     <textarea wrap="hard" className="ShareTopInp" placeholder={comment ? "コメントする" : '今何してる？'} ref={desc} required maxLength={500}></textarea>
                     <button className='ShareBottomButton'><span className='ShareBottomButtonSpan'>送信</span></button>

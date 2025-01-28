@@ -53,7 +53,7 @@ export default function Login() {
         username: username.current.value,
         password: password.current.value
       };
-      const res = await axios.post("auth/login", user);
+      const res = await axios.post("auth/login", user,{ withCredentials: true });
       setUser(res.data);
     } catch (err) {
       password.current.setCustomValidity("パスワードが違います。");

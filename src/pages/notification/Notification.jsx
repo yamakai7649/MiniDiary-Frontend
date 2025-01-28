@@ -51,7 +51,7 @@ export default function Notification() {
         } finally {
             setTimeout(() => {
                 setIsLoading(false);
-            },500);
+            },250);
         }
     }, [user?._id]);
 
@@ -74,7 +74,7 @@ export default function Notification() {
                         <div className="NotificationTop">
                             <Link className='linkWrapper' to={`/profile/${user?.username}`} style={{ textDecoration: "none", color: "black" }}>
                                 <img className='TopbarProfile' src={user?.profilePicture ?
-                                    PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                                    user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
                                 } />
                             </Link>
                             <h2 className="NotificationTitle">通知</h2>

@@ -83,6 +83,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 

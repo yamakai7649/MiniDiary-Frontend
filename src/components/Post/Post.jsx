@@ -49,7 +49,7 @@ export default function Post({ post, username, comment }) {
     try {
       await axios.delete(`/posts/${post._id}?userId=${currentUser._id}`);
       if (post.img) {
-        await axios.delete(`/upload/delete?fileName=${post.img}`);
+        await axios.delete(`/upload/delete?public_id=${post.imgId}`);
       }
       window.location.reload();
     } catch (err) {
@@ -82,13 +82,13 @@ export default function Post({ post, username, comment }) {
       </div>
 
         <div className="PostContent">
-          {post.img && <img src={PUBLIC_FOLDER + post.img} className="PostContentImage"></img>}
+          {post.img && <img src={post.img} className="PostContentImage"></img>}
           <small className="PostContentComment">{post.desc}</small>
       </div>
         <div className="PostBottom">
           <Link to={`/profile/${user.username}`}>
           <img src={user.profilePicture ?
-                  PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                  user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
               } alt="" className="PostBottomImage" />
         </Link>
           <div className="PostBottomName">{user.username}</div>

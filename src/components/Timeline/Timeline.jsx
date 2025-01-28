@@ -69,7 +69,7 @@ export default function Timeline({ username, comment, profileTab }) {
         } finally {
           setTimeout(() => {
             setIsLoading(false);
-          }, 750);
+          }, 500);
         }
       }
       fetchPosts();
@@ -108,7 +108,7 @@ export default function Timeline({ username, comment, profileTab }) {
             <div className="TimelineTop">
               <Link className='linkWrapper' to={`/profile/${user?.username}`} style={{ textDecoration: "none", color: "black" }}>
                     <img className='TopbarProfile' src={user?.profilePicture ?
-                  PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                  user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
               } />
               </Link>
             <h2 className="TimelineTitle">タイムライン</h2>
@@ -183,7 +183,7 @@ export default function Timeline({ username, comment, profileTab }) {
         } finally {
           setTimeout(() => {
             setIsLoading(false);
-          },750);
+          },500);
         }
       }
 

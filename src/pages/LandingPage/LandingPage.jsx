@@ -47,6 +47,11 @@ const Body = styled.div`
 const Heading = styled.h1`
     margin-bottom:2rem;
     font-size:5rem;
+
+    @media (max-width:600px) {
+        font-size:3.5rem;
+    }
+
 `
 const Slogan = styled.h2`
     margin-bottom:2rem;
@@ -61,7 +66,7 @@ const Description = styled.h3`
 
 export default function LandingPage() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
-    const imagePath = PUBLIC_FOLDER + "/background/diary.jpg";
+    const imagePath = PUBLIC_FOLDER + "background/diary.jpg";
     const navigate = useNavigate();
 
 

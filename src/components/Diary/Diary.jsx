@@ -34,11 +34,16 @@ export default function Diary({closeModal}) {
         try {
             if (file) {
                 const data = new FormData();
-                const fileName = Date.now() + file.name;
-                data.append("name", fileName);
                 data.append("file", file);
-                newPost.img = fileName;
-                await axios.post("/upload/", data);
+                const res = await axios.post("/upload/", data, {
+                    headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                });
+                const imageId = res.data.public_id;
+                const imageUrl = res.data.imageUrl;
+                newPost.imgId = imageId;
+                newPost.img = imageUrl;
                 await axios.post("/posts/", newPost);
                 window.location.reload();
             } else {

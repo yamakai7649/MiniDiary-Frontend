@@ -26,7 +26,7 @@ export default function EditProfile({setIsEditting}) {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        },500)
+        },250)
     },[])
 
     const selectFile = (e) => {
@@ -53,11 +53,18 @@ export default function EditProfile({setIsEditting}) {
             }
             if (file) {
                 const data = new FormData();
-                const fileName = Date.now() + file.name;
-                data.append("name", fileName);
                 data.append("file", file);
-                await axios.post("/upload/", data);
-                await axios.put(`/users/${user?._id}`, { username: username, desc: desc, profilePicture: fileName });
+                const res = await axios.post("/upload/", data, {
+                    headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                });
+                const imageId = res.data.public_id;
+                const imageUrl = res.data.imageUrl;
+                if (user.profilePicture) {
+                    await axios.delete(`/upload/delete?public_id=${user.profilePictureId}`);
+                }
+                await axios.put(`/users/${user?._id}`, { username: username, desc: desc, profilePicture: imageUrl, profilePictureId: imageId });
                 setIsEditting(false);
                 navigate(`/profile/${username}`);
                 return window.location.reload();
@@ -87,7 +94,7 @@ export default function EditProfile({setIsEditting}) {
                     <div className="EditProfileTopSave" onClick={handleEdit}>保存</div>
                 </div>
                 <div className="EditProfileIcon">
-                    <img src={preview ? preview : user.profilePicture ? PUBLIC_FOLDER + user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} className="EditProfileIconImage" onClick={openFileDialog} />
+                    <img src={preview ? preview : user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} className="EditProfileIconImage" onClick={openFileDialog} />
                     <input type="file" id="ProfileIcon" style={{display:"none"}} ref={fileInputRef} onChange={selectFile}/>
                 </div>
                 <div className="EditProfileName">
