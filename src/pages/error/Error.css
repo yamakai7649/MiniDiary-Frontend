@@ -1,11 +1,26 @@
 .errorContainer {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
 }
 
-.errorMessage {
-    
+.errorButton {
+    padding: 0.6rem 1.5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.errorButton:hover {
+    background-color: rgb(57, 56, 56);
 }

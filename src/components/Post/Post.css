@@ -6,7 +6,7 @@
     margin-top: 1rem;
     border-radius: 0.3rem;
     margin-bottom: 1rem;
-    
+    animation: cardFadeIn 0.35s ease-out forwards;
 }
 
 .PostContainer2 {
@@ -17,6 +17,7 @@
     margin-top: 4rem;
     border-radius: 0.3rem;
     margin-bottom: 1.5rem;
+    animation: cardFadeIn 0.35s ease-out forwards;
 }
 
 .PostTopTop {
@@ -51,10 +52,12 @@
     width:2rem;
     text-align: center;
     border-radius: 15%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .PostTopTopBack:hover {
     background-color: rgb(247, 246, 246);
+    transform: scale(1.1);
 }
 
 .PostTopTopTitle {
@@ -75,6 +78,11 @@
     margin-left: auto;
     margin-right: 1rem;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.PostTopBar:hover {
+    transform: scale(1.15);
 }
 
 .PostTopTime {
@@ -121,11 +129,22 @@
     object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.PostBottomImage:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
 }
 
 .PostBottomName {
     cursor: pointer;
     font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.PostBottomName:hover {
+    color: #555555;
 }
 
 .PostBottomRight {
@@ -149,6 +168,11 @@
 .PostBottomLikesImage {
     margin-right: 0.25rem;
     cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.PostBottomLikesImage:hover {
+    transform: scale(1.2);
 }
 
 .PostBottomComment {
@@ -159,6 +183,12 @@
 .PostBottomCommentIcon {
     margin-right: 0.3rem;
     cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.PostBottomCommentIcon:hover {
+    transform: scale(1.2);
+    color: #394091;
 }
 
 .postLinkWrapper {
@@ -292,4 +322,13 @@
     }
 }
 
-
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,21 +1,17 @@
 import {useRef,useState,useEffect} from 'react'
 import "./Diary.css";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-export default function Diary({closeModal}) {
+export default function Diary({ closeModal, onPostCreated }) {
     const navigate = useNavigate();
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
     const desc = useRef();
-    const user = useSelector((state) => {
-        return state.AuthReducer.user;
-    });
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -27,29 +23,19 @@ export default function Diary({closeModal}) {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const newPost = {
-            userId: user._id,
-            desc: desc.current.value,
-        }
+        const newPost = { desc: desc.current.value };
         try {
             if (file) {
                 const data = new FormData();
                 data.append("file", file);
-                const res = await axios.post("/upload/", data, {
-                    headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+                const uploadRes = await axios.post("/upload/", data, {
+                    headers: { "Content-Type": "multipart/form-data" },
                 });
-                const imageId = res.data.public_id;
-                const imageUrl = res.data.imageUrl;
-                newPost.imgId = imageId;
-                newPost.img = imageUrl;
-                await axios.post("/posts/", newPost);
-                window.location.reload();
-            } else {
-                await axios.post("/posts/", newPost);
-                window.location.reload();
+                newPost.imgId = uploadRes.data.public_id;
+                newPost.img = uploadRes.data.imageUrl;
             }
+            const res = await axios.post("/posts/", newPost);
+            onPostCreated?.(res.data);
         } catch (err) {
             console.log(err);
             navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
@@ -87,7 +73,7 @@ export default function Diary({closeModal}) {
                                 <small className='DiaryTopTimeRight'>{format(new Date(), "yyyy")}</small>
                             </div>
                             {preview && <div className="DiaryPreview">
-                                <img className="DiaryPreviewImage" src={preview} />
+                                <img className="DiaryPreviewImage" alt="" src={preview} />
                                 <div className="DiaryPreviewCloser" onClick={closePreview}><CloseIcon style={{fontSize:"small"}}></CloseIcon></div>
                             </div>}
                             <textarea className={preview ? "DiaryTextarea2":'DiaryTextarea'} placeholder='あなたの心に浮かぶ言葉をここに書いてみませんか？' ref={desc} required maxLength={500} ></textarea>

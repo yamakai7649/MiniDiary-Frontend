@@ -14,7 +14,7 @@ export default function Profile({ comment }) {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
     const [user, setUser] = useState({});
     const [profileTab, setProfileTab] = useState("diary");
-    const [isEditting, setIsEditting] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => {
@@ -22,7 +22,7 @@ export default function Profile({ comment }) {
     });
     const { username } = useParams();
     const [isFollow, setIsFollow] = useState(false);
-    const navigate = useNavigate(); //ここで一度初期化
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -32,11 +32,10 @@ export default function Profile({ comment }) {
             } catch (err) {
                 console.log(err);
                 navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
-                //なぜNavigateではダメなのか
             }
         }
         fetchUser();
-    }, [username]);
+    }, [username, navigate]);
 
     useEffect(() => {
         try {
@@ -45,39 +44,39 @@ export default function Profile({ comment }) {
             console.log(err);
             navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
         } finally {
-            setTimeout(() => {
-                setIsLoading(false);
-            },500)
+            setIsLoading(false);
         }
-    }, [currentUser?.followings, user._id]);
+    }, [currentUser?.followings, user._id, navigate]);
 
     const handleFollow = async () => {
-        if (!isFollow) {
-            try {
+        const updatedFollowers = isFollow
+            ? (user.followers || []).filter(id => id !== currentUser._id)
+            : [...(user.followers || []), currentUser._id];
+        
+        setUser(prev => ({ ...prev, followers: updatedFollowers }));
+        setIsFollow(!isFollow);
+
+        try {
+            if (!isFollow) {
                 const res = await axios.put(`/users/${username}/follow`, { username: currentUser.username });
                 await followCall(res.data, dispatch);
-            } catch (err) {
-                console.log(err);
-                navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
-            }
-        } else {
-            try {
+            } else {
                 const res = await axios.put(`/users/${username}/unfollow`, { username: currentUser.username });
                 await unfollowCall(res.data, dispatch);
-            } catch (err) {
-                console.log(err);
-                navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
             }
+            const res = await axios.get(`/users?username=${username}`);
+            setUser(res.data);
+        } catch (err) {
+            console.log(err);
+            navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
         }
-        setIsFollow(!isFollow);
-        window.location.reload();
     }
 
-    if (isEditting) {
+    if (isEditing) {
         return (
             <>
                 <Sidebar></Sidebar>
-                <EditProfile setIsEditting={setIsEditting}></EditProfile>
+                <EditProfile setIsEditing={setIsEditing}></EditProfile>
             </>
         )
     }
@@ -88,11 +87,11 @@ export default function Profile({ comment }) {
                 <div className="ProfileLeft">
                     <Sidebar ></Sidebar>
                 </div>
-                {isLoading ? <div className="ProfileLight">
-                    <div className="ProfileLightSpinner"><Spinner></Spinner></div>
+                {isLoading ? <div className="ProfileSpinnerContainer">
+                    <Spinner></Spinner>
                 </div>
                     :
-                    <div className="ProfileLight">
+                    <div className="ProfileLight" key={username}>
                         <div className="ProfileLightTop">
                             <div className="ProfileLightTopUser">
                                 <div className="ProfileLightTopDetails">
@@ -109,7 +108,7 @@ export default function Profile({ comment }) {
                                         </div>
                                     </div>
                                     <h5 className='ProfileLightTopDesc'>{user.desc}</h5>
-                                    {currentUser?._id === user._id ? <span className='ProfileLightTopEdit' onClick={() => setIsEditting(true)} >プロフィールを編集</span> : <button className={isFollow ? 'ProfileLightTopFollow' : 'ProfileLightTopFollow2'} onClick={handleFollow}>{isFollow ? "フォローを外す" : "フォローする"}</button>}
+                                    {currentUser?._id === user._id ? <span className='ProfileLightTopEdit' onClick={() => setIsEditing(true)} >プロフィールを編集</span> : <button className={isFollow ? 'ProfileLightTopFollow' : 'ProfileLightTopFollow2'} onClick={handleFollow}>{isFollow ? "フォローを外す" : "フォローする"}</button>}
                                 </div>
                             </div>
 

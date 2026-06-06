@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
+import { editCall } from '../../actionCalls';
 import axios from "axios";
 import "./EditProfile.css"
 
-export default function EditProfile({setIsEditting}) {
+export default function EditProfile({setIsEditing}) {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
-    const navigate = useNavigate(); //ここで一度初期化
-    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const user = useSelector((state) => {
     return state.AuthReducer.user;
     });
@@ -23,11 +23,6 @@ export default function EditProfile({setIsEditting}) {
         fileInputRef.current.click();   
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        },250)
-    },[])
 
     const selectFile = (e) => {
         setFile(e.target.files[0]);
@@ -64,37 +59,31 @@ export default function EditProfile({setIsEditting}) {
                 if (user.profilePicture) {
                     await axios.delete(`/upload/delete?public_id=${user.profilePictureId}`);
                 }
-                await axios.put(`/users/${user?._id}`, { username: username, desc: desc, profilePicture: imageUrl, profilePictureId: imageId });
-                setIsEditting(false);
-                navigate(`/profile/${username}`);
-                return window.location.reload();
+                const updated = await axios.put(`/users/${user?._id}`, { username, desc, profilePicture: imageUrl, profilePictureId: imageId });
+                await editCall(updated.data, dispatch);
+                setIsEditing(false);
+                return navigate(`/profile/${username}`);
             }
-            await axios.put(`/users/${user?._id}`, { username: username, desc: desc });
-            setIsEditting(false);
+            const updated = await axios.put(`/users/${user?._id}`, { username, desc });
+            await editCall(updated.data, dispatch);
+            setIsEditing(false);
             navigate(`/profile/${username}`);
-            window.location.reload();
         } catch (err) {
             console.log(err);
             navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
         }
     }
 
-    if (isLoading) {
-        return (
-            <div className="EditProfileSpinner"><Spinner></Spinner></div>
-        )
-    }
-
     return (
         <>
             <form className="EditProfileContainer">
                 <div className="EditProfileTop">
-                    <h3 className="EditProfileTopBack" onClick={()=> setIsEditting(false)}>←</h3>
+                    <h3 className="EditProfileTopBack" onClick={()=> setIsEditing(false)}>←</h3>
                     <h3 className="EditProfileTopHeading">プロフィール編集</h3>
                     <div className="EditProfileTopSave" onClick={handleEdit}>保存</div>
                 </div>
                 <div className="EditProfileIcon">
-                    <img src={preview ? preview : user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} className="EditProfileIconImage" onClick={openFileDialog} />
+                    <img src={preview ? preview : user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="EditProfileIconImage" onClick={openFileDialog} />
                     <input type="file" id="ProfileIcon" style={{display:"none"}} ref={fileInputRef} onChange={selectFile}/>
                 </div>
                 <div className="EditProfileName">

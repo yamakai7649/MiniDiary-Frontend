@@ -2,6 +2,7 @@
     display: flex;
     height: 100vh;
     justify-content: space-evenly;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .LoginLeft {
@@ -49,6 +50,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.LoginLightEmail:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .LoginLightPassword {
@@ -58,6 +66,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.LoginLightPassword:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .LoginLightLogin {
@@ -69,6 +84,11 @@
     background-color: #394091;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.LoginLightLogin:hover {
+    background-color: #2b3173;
 }
 
 .LoginLightForget {
@@ -90,6 +110,12 @@
     top: -0.5rem;
     display: flex;
     text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.LoginLightNew:hover,
+.LoginLightNew:hover .LoginLightNewButton {
+    background-color: #2b8032;
 }
 
 .LoginLightNewButton {
@@ -98,6 +124,7 @@
     margin: auto auto;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 @media (max-width:1000px) {
@@ -138,5 +165,16 @@
     .LoginLightForm {
         width: 22rem;
         height: 26rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

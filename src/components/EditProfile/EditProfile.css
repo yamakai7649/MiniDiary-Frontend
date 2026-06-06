@@ -1,6 +1,7 @@
 .EditProfileContainer {
     margin-left: 15rem;
     width: calc(100% - 15rem);
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .EditProfileTop {
@@ -152,5 +153,16 @@
     .EditProfileSpinner {
         margin-left: 0rem;
         width: 100%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

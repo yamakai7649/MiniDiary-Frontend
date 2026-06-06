@@ -1,4 +1,4 @@
-import { useRef,useEffect,useState} from 'react';
+import { useRef, useState } from 'react';
 import axios from "axios";
 import "./Register.css"
 import { useNavigate, Link } from "react-router-dom";
@@ -11,16 +11,6 @@ export default function Register() {
   const password = useRef();
   const passwordConfirm = useRef();
   const navigate = useNavigate();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-
-        return () => {
-            window.removeEventListener("resize", () => setWindowWidth(window.innerWidth));
-        };
-    }, []);
-
   const handleRegister = async (e) => {
     e.preventDefault();
     if (username.current.value.length < 4 || username.current.value.length > 15) {
@@ -59,9 +49,9 @@ export default function Register() {
         password: password.current.value,
       }
       await axios.post("/auth/register", user);
-      const res = await axios.post("auth/login", user,{ withCredentials: true });
+      const res = await axios.post("/auth/login", user, { withCredentials: true });
       await loginCall(res.data, dispatch);
-      window.location.reload();
+      navigate("/");
     } catch (err) {
       console.log(err);
       navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });

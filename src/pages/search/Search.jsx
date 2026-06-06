@@ -27,13 +27,11 @@ export default function Search() {
                 console.log(err);
                 navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
             } finally {
-                setTimeout(() => {
-                    setIsLoading(false);
-                },250)
+                setIsLoading(false);
             }
         }
         fetchRandomUser();
-    }, [user.username]);
+    }, [user.username, navigate]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();

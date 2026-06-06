@@ -5,31 +5,34 @@
 }
 
 .NotificationContainer2 {
-    margin-top: 100px;
-    height: calc(100vh - 100px);
+    margin-top: 0;
+    height: auto;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .Notifications {
     display: flex;
     flex-direction: column;
     margin-left: 15rem;
-    width: 100%;
+    width: calc(100% - 15rem);
     height:100%;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .NotificationTop {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: sticky;
     top: 0;
-    width: calc(100% - 15rem);
+    width: 100%;
     z-index: 1000;
     background-color: white;
+    padding-top: 0.5rem;
 }
 
 .NotificationTitle {
     margin: 0 auto;
-    margin-top: 0.5rem;
+    margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
@@ -45,6 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 0.1rem solid transparent;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .NotificationButtonActive {
@@ -53,6 +58,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 0.1rem solid black;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .NotificationButtonActive:hover {
@@ -68,6 +74,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 0.1rem solid transparent;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .RequestButtonActive {
@@ -76,6 +84,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 0.1rem solid black;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .RequestButton:hover {
@@ -127,7 +136,7 @@
 
 .NotificationSpinner {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,9 +145,6 @@
 @media (max-width: 840px) {
     .Notifications {
         margin-left: 5rem;
-    }
-
-    .NotificationTop {
         width: calc(100% - 5rem);
     }
 }
@@ -146,10 +152,18 @@
 @media (max-width: 600px) {
     .Notifications {
         margin-left: 0;
+        width: 100%;
         margin-bottom: 5rem;
     }
+}
 
-    .NotificationTop {
-        width: 100%;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

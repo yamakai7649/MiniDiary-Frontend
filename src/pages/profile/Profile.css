@@ -12,11 +12,12 @@
     width:100%;
     min-height: 100vh;
     margin-left: 15rem;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .ProfileLightSpinner {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +26,7 @@
 .ProfileLightTop {
     margin-top: 0;
     padding-top: 2.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
 }
 
 
@@ -82,6 +83,7 @@
     position: absolute;
     top:2rem;
     right: 2rem;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
 
 .ProfileLightTopFollow2 {
@@ -95,14 +97,17 @@
     position: absolute;
     top: 2rem;
     right: 2rem;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
 
 .ProfileLightTopFollow:hover {
     background-color: rgb(247, 246, 246);
+    transform: scale(1.03);
 }
 
 .ProfileLightTopFollow2:hover {
     background-color: rgb(97, 97, 97);
+    transform: scale(1.03);
 }
 
 .ProfileLightTopEdit {
@@ -130,7 +135,7 @@
 .ProfileTop {
     width: 100%;
     height: 3rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
     position: sticky;
     z-index: 1000;
     top:0;
@@ -150,6 +155,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 0.1rem solid transparent;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .DiaryButtonActive,
@@ -159,6 +166,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 0.1rem solid black;
+    transition: border-color 0.25s ease, background-color 0.2s ease, color 0.25s ease;
 }
 
 .DiaryButtonActive:hover,
@@ -204,5 +212,39 @@
 
     .ProfileLightTopUser {
         width: 85%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ProfileSpinnerContainer {
+    margin-left: 15rem;
+    width: calc(100% - 15rem);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 840px) {
+    .ProfileSpinnerContainer {
+        margin-left: 5rem;
+        width: calc(100% - 5rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .ProfileSpinnerContainer {
+        margin-left: 0;
+        width: 100%;
     }
 }

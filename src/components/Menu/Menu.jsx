@@ -3,9 +3,8 @@ import ReactDOM from "react-dom"
 import "./Menu.css"
 import Logout from '../Logout/Logout';
 import { logoutCall } from '../../actionCalls';
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import Delete from '../Delete/Delete';
 
 export default function Menu({ setMenuOpen }) {
     const [isLoggingout, setLoggingout] = useState(false);

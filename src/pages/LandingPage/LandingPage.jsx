@@ -1,14 +1,21 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
 const Container = styled.div`
     width:100vw;
     height:100vh;
-    background-image: url(${({ imagePath }) => imagePath});
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${({ imagePath }) => imagePath});
     background-size: cover;
+    background-position: center;
+    animation: ${fadeIn} 0.8s ease-out forwards;
 `
 const Topbar = styled.div`
     width:100%;
@@ -30,9 +37,10 @@ const RegisterButton = styled.div`
     position:absolute;
     right:2rem;
     cursor: pointer;
+    transition: color 0.2s ease;
 
     &:hover {
-        color:rgb(40,40,40);
+        color:rgb(100, 100, 100);
     }
 `
 
@@ -80,7 +88,7 @@ export default function LandingPage() {
                 <Body>
                     <Heading>Mini Diary</Heading>
                     <Slogan>日々を記録し、自分を見つける喜びを</Slogan>
-                    <Description>日記を書くことは、過去を振り返り未来を描く自由な旅です<br></br>MiniDiaryは、日々の小さな気づきや感情を記録し<br></br>あなた自身の成長に寄り添うパートナーです</Description>
+                    <Description>日記を書くことは、過去を振り返り未来を描く自由な旅です<br></br>MiniDiaryは、日々の小さな気づきや感情を記録し<br></br>あなた自身の成長に寄り充うパートナーです</Description>
                 </Body>
             </Container>
         </>

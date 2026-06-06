@@ -3,6 +3,7 @@
     height: 100vh;
     justify-content: space-evenly;
     align-items: center;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .RegisterLeft {
@@ -47,6 +48,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.RegisterLightUsername:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .RegisterLightEmail {
@@ -56,6 +64,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.RegisterLightEmail:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .RegisterLightPassword {
@@ -65,6 +80,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.RegisterLightPassword:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .RegisterLightConfirmPassword {
@@ -74,6 +96,13 @@
     border: 1px solid #777777;
     border-radius: 0.5rem;
     padding-left: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.RegisterLightConfirmPassword:focus {
+    border-color: #394091;
+    box-shadow: 0 0 5px rgba(57, 64, 145, 0.25);
 }
 
 .RegisterLightSignup {
@@ -85,6 +114,11 @@
     background-color: #394091;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.RegisterLightSignup:hover {
+    background-color: #2b3173;
 }
 
 .RegisterLightForget {
@@ -107,6 +141,12 @@
     margin-top: 0.5rem;
     display: flex;
     text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.RegisterLightLogin:hover,
+.RegisterLightLogin:hover .RegisterLightLoginButton {
+    background-color: #2b8032;
 }
 
 .RegisterLightLoginButton {
@@ -115,6 +155,7 @@
     color: white;
     background-color: #37a33f;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 @media (max-width:1000px) {
@@ -155,5 +196,16 @@
     .RegisterLightForm {
         width: 22rem;
         height: 26rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

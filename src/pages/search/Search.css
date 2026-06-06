@@ -1,8 +1,9 @@
 .SearchContainer {
     margin-left: 15rem;
-    width: calc(100%-15rem);
+    width: calc(100% - 15rem);
     display: flex;
     flex-direction: column;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .SearchTop {
@@ -58,6 +59,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .SearchRecommendationPersonContainer {
@@ -133,7 +135,7 @@
 @media (max-width:840px) {
     .SearchContainer {
         margin-left: 5rem;
-        width: calc(100%-5rem);
+        width: calc(100% - 5rem);
     }
 
     .SearchFormHeading,
@@ -157,4 +159,15 @@
         .SearchRecommendationPerson {
             width: 80%;
         }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

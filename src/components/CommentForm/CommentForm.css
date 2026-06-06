@@ -1,4 +1,4 @@
-.ShareContainerContainer {
+.CommentFormContainer {
     position: fixed;
     bottom: 0;
     width: calc(100% - 15rem);
@@ -6,20 +6,20 @@
     background-color: white;
 }
 
-.ShareContainerContainer:hover {
+.CommentFormContainer:hover {
     background-color: rgb(250, 250, 250);
 }
 
-.ShareContainer {
+.CommentForm {
     height: 100%;
-    width:100%;
+    width: 100%;
     display: flex;
     align-items: center;
     border-radius: 0.3rem;
     background-color: white;
 }
 
-.ShareTopImage {
+.CommentFormImage {
     width:2rem;
     height:2rem;
     border-radius: 50%;
@@ -27,7 +27,7 @@
     margin-left: 0.5rem;
 }
 
-.ShareTopInp {
+.CommentFormInput {
     border: none;
     outline: none;
     width: calc(100% - 32px - 2.25rem);
@@ -36,8 +36,7 @@
     resize: none;
 }
 
-
-.ShareBottomButton {
+.CommentFormButton {
     display: flex;
     margin-left: auto;
     margin-right: 0.75rem;
@@ -51,23 +50,22 @@
     justify-content: center;
 }
 
-.ShareBottomButton:hover {
+.CommentFormButton:hover {
     background-color: rgb(109, 157, 247);
 }
 
-.ShareBottomButtonSpan {
+.CommentFormButtonSpan {
     color: white;
-    
 }
 
 @media (max-width:840px) {
-    .ShareContainerContainer {
+    .CommentFormContainer {
         width: calc(100% - 5rem);
     }
 }
 
 @media (max-width:600px) {
-    .ShareContainerContainer {
+    .CommentFormContainer {
         width: 100%;
     }
 }

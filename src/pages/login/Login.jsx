@@ -1,4 +1,4 @@
-import {useRef, useState,useEffect} from 'react'
+import {useRef, useState} from 'react'
 import "./Login.css"
 import { useDispatch } from "react-redux";
 import { loginCall } from "../../actionCalls";
@@ -10,18 +10,7 @@ export default function Login() {
   const navigate = useNavigate();
   const password = useRef();
   const username = useRef();
-  const dispatch = useDispatch(); 
-  const [user, setUser] = useState();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-
-        return () => {
-            window.removeEventListener("resize", () => setWindowWidth(window.innerWidth));
-        };
-    }, []);
-
+  const dispatch = useDispatch();
   const handleLogin = async(e) => {
     e.preventDefault();
     if (username.current.value.length < 4 || username.current.value.length > 15) {
@@ -49,24 +38,16 @@ export default function Login() {
     }
 
     try {
-      const user = {
+      const credentials = {
         username: username.current.value,
         password: password.current.value
       };
-      const res = await axios.post("auth/login", user,{ withCredentials: true });
-      setUser(res.data);
+      const res = await axios.post("/auth/login", credentials, { withCredentials: true });
+      await loginCall(res.data, dispatch);
+      navigate("/");
     } catch (err) {
       password.current.setCustomValidity("パスワードが違います。");
       password.current.reportValidity();
-      return;
-    }
-
-    try {
-      await loginCall(user, dispatch);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-      navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
     }
   };
 

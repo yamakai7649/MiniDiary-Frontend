@@ -22,11 +22,6 @@ const AuthReducer = createSlice({
         error: false
     },
     reducers: {
-        loginStart(state, { type }) {
-            state.user = null;
-            state.isFetching = true;
-            state.error = false;
-        },
         loginSuccess(state, { type, payload }) {
             state.user = payload;
             state.isFetching = false;
@@ -43,7 +38,6 @@ const AuthReducer = createSlice({
             state.error = false;
         },
         logoutError(state, { type, payload }) {
-            state.user = state.user;
             state.isFetching = false;
             state.error = payload;
         },
@@ -53,7 +47,6 @@ const AuthReducer = createSlice({
             state.error = false;
         },
         followError(state, { payload }) {
-            state.user = state.user;
             state.isFetching = false;
             state.error = payload;
         },
@@ -63,7 +56,6 @@ const AuthReducer = createSlice({
             state.error = false;
         },
         unfollowError(state, { payload }) {
-            state.user = state.user;
             state.isFetching = false;
             state.error = payload;
         },
@@ -73,7 +65,6 @@ const AuthReducer = createSlice({
             state.error = false;
         },
         editError(state,{payload}) {
-            state.user = state.user;
             state.isFetching = false;
             state.error = payload;
         }
@@ -96,6 +87,6 @@ const AuthReducer = createSlice({
     }
 });
 
-export const { loginSuccess, loginStart, loginError, logoutSuccess, logoutError,followSuccess,followError,unfollowSuccess,unfollowError,editSuccess,editError } = AuthReducer.actions;
+export const { loginSuccess, loginError, logoutSuccess, logoutError,followSuccess,followError,unfollowSuccess,unfollowError,editSuccess,editError } = AuthReducer.actions;
 
 export default AuthReducer.reducer;
