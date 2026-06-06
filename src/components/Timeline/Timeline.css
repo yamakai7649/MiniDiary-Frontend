@@ -1,6 +1,6 @@
 .TimelineContainer {
-    margin-left: 15rem;
-    width: calc(100% - 15rem);
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
     min-height: 100vh;
     animation: fadeInUp 0.35s ease-out forwards;
 }
@@ -15,6 +15,10 @@
     z-index: 1000;
     background-color: white;
     padding-top: 0.5rem;
+}
+
+.TimelineTopProfileLink {
+    display: none;
 }
 
 .TimelineTopTop {
@@ -109,7 +113,7 @@
 
 .CreateDiaryContainer {
     position: fixed;
-    z-index: 10000;
+    z-index: 1100;
     bottom: 1rem;
     right: 1rem;
 }
@@ -161,19 +165,21 @@
 }
 
 .CommentTimelineSpinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.CommentTimelineSpinner2 {
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 900;
+}
+
+.CommentTimelineSpinner2 {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
 }
 
 @media (max-width:1080px) {
@@ -192,8 +198,8 @@
 
 @media (max-width: 840px) {
     .TimelineContainer {
-        margin-left: 5rem;
-        width: calc(100% - 5rem) ;
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width)) ;
     }
 
     .CommentNumberContainer {
@@ -223,6 +229,10 @@
     .CreateDiaryContainer {
         bottom: 6rem;
     }
+
+    .TimelineTopProfileLink {
+        display: block;
+    }
 }
 
 @keyframes fadeInUp {
@@ -232,6 +242,6 @@
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 }

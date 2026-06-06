@@ -8,7 +8,6 @@ import { useSelector,useDispatch } from "react-redux";
 import { followCall, unfollowCall } from '../../actionCalls';
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../../components/EditProfile/EditProfile';
-import Spinner from '../../components/Spinner/Spinner';
 
 export default function Profile({ comment }) {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
@@ -24,29 +23,27 @@ export default function Profile({ comment }) {
     const { username } = useParams();
     const [isFollow, setIsFollow] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.get(`/users?username=${username}`);
-                setUser(res.data);
+                const fetchedUser = res.data;
+                setUser(fetchedUser);
             } catch (err) {
                 console.log(err);
                 navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
+            } finally {
+                setIsLoading(false);
             }
-        }
+        };
         fetchUser();
     }, [username, navigate]);
 
     useEffect(() => {
-        try {
-            setIsFollow(currentUser?.followings.includes(user._id));
-        } catch (err) {
-            console.log(err);
-            navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
-        } finally {
-            setIsLoading(false);
-        }
-    }, [currentUser?.followings, user._id, navigate]);
+        setIsFollow(currentUser?.followings?.includes(user._id) || false);
+    }, [currentUser?.followings, user._id]);
 
     const handleFollow = async () => {
         const updatedFollowers = isFollow
@@ -76,7 +73,13 @@ export default function Profile({ comment }) {
         return (
             <>
                 <Sidebar></Sidebar>
-                <EditProfile setIsEditing={setIsEditing}></EditProfile>
+                <EditProfile
+                    setIsEditing={setIsEditing}
+                    onProfileUpdated={(updatedUser) => {
+                        setUser(updatedUser);
+                        setIsFollow(currentUser?.followings?.includes(updatedUser._id) || false);
+                    }}
+                ></EditProfile>
             </>
         )
     }
@@ -87,9 +90,7 @@ export default function Profile({ comment }) {
                 <div className="ProfileLeft">
                     <Sidebar ></Sidebar>
                 </div>
-                {isLoading ? <div className="ProfileSpinnerContainer">
-                    <Spinner></Spinner>
-                </div>
+                {isLoading ? null
                     :
                     <div className="ProfileLight" key={username}>
                         <div className="ProfileLightTop">

@@ -22,14 +22,6 @@ export default function Notification() {
     const user = useSelector((state) => {
         return state.AuthReducer.user;
     });
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     const applyNotifications = (data) => {
         setNotifications(data.filter(d => d.type === "like" || d.type === "comment"));
         setRequests(data.filter(d => d.type === "follow"));
@@ -67,28 +59,18 @@ export default function Notification() {
             <div className="NotificationContainer">
                 <Sidebar></Sidebar>
                 <div className="Notifications">
-                    {windowWidth <= 600 ?
-                        <div className="NotificationTop">
-                            <Link className='linkWrapper' to={`/profile/${user?.username}`}>
-                                <img className='TopbarProfile' alt="" src={user?.profilePicture ?
-                                    user?.profilePicture : defaultProfileImage
-                                } />
-                            </Link>
-                            <h2 className="NotificationTitle">通知</h2>
-                            <div className="NotificationSwitch">
-                                <div onClick={() => setActiveTab("notification")} className={activeTab === "notification" ? "NotificationButtonActive" : "NotificationButton"}>通知</div>
-                                <div onClick={() => setActiveTab("request")} className={activeTab === "request" ? "RequestButtonActive" : "RequestButton"}>リクエスト</div>
-                            </div>
+                    <div className="NotificationTop">
+                        <Link className='linkWrapper NotificationTopProfileLink' to={`/profile/${user?.username}`}>
+                            <img className='TopbarProfile' alt="" src={user?.profilePicture ?
+                                user?.profilePicture : defaultProfileImage
+                            } />
+                        </Link>
+                        <h2 className="NotificationTitle">通知</h2>
+                        <div className="NotificationSwitch">
+                            <div onClick={() => setActiveTab("notification")} className={activeTab === "notification" ? "NotificationButtonActive" : "NotificationButton"}>通知</div>
+                            <div onClick={() => setActiveTab("request")} className={activeTab === "request" ? "RequestButtonActive" : "RequestButton"}>リクエスト</div>
                         </div>
-                        :
-                        <div className="NotificationTop">
-                            <h2 className="NotificationTitle">通知</h2>
-                            <div className="NotificationSwitch">
-                                <div onClick={() => setActiveTab("notification")} className={activeTab === "notification" ? "NotificationButtonActive" : "NotificationButton"}>通知</div>
-                                <div onClick={() => setActiveTab("request")} className={activeTab === "request" ? "RequestButtonActive" : "RequestButton"}>リクエスト</div>
-                            </div>
-                        </div>
-                    }
+                    </div>
                     {isLoading ? <div className="NotificationSpinner"><Spinner></Spinner></div> :
                     <div className="NotificationContainer2" key={activeTab}>
                         {activeTab === "notification" ?

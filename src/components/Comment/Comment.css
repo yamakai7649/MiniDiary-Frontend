@@ -113,6 +113,9 @@
 }
 
 @media (max-width:600px) {
+    .Comment {
+        margin-bottom: 10rem;
+    }
 
     .CommentTop,
     .CommentContent {
@@ -128,6 +131,6 @@
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 }

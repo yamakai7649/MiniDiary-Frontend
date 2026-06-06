@@ -14,15 +14,19 @@ export default function CommentTimeline({ username }) {
   const [comments, setComments] = useState([]);
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPostLoading, setIsPostLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        setIsPostLoading(true);
         const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
       } catch (err) {
         console.log(err);
         navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
+      } finally {
+        setIsPostLoading(false);
       }
     };
 
@@ -34,7 +38,7 @@ export default function CommentTimeline({ username }) {
         console.log(err);
         navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
       } finally {
-        setTimeout(() => setIsLoading(false), 200);
+        setTimeout(() => setIsLoading(false), 500);
       }
     };
 
@@ -50,22 +54,20 @@ export default function CommentTimeline({ username }) {
     setComments(prev => prev.filter(c => c._id !== deletedId));
   };
 
-  if (!post) return null;
-
   return (
     <div className={username ? null : "TimelineContainer"}>
-      {isLoading && (
+      {(isLoading || isPostLoading) && (
         <div className={username ? 'CommentTimelineSpinner' : "CommentTimelineSpinner2"}>
           <Spinner />
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && !isPostLoading && post && (
         <div className={username ? "TimelinePostContainer2" : "TimelinePostContainer"}>
           <Post post={post} comment={true} username={username} />
         </div>
       )}
-      {!isLoading && <CommentForm onCommentCreated={handleCommentCreated} />}
-      {!isLoading && (
+      {!isLoading && !isPostLoading && post && <CommentForm onCommentCreated={handleCommentCreated} />}
+      {!isLoading && !isPostLoading && post && (
         <div className="Comment">
           <div className="CommentNumber">
             <div className="CommentNumberContainer">

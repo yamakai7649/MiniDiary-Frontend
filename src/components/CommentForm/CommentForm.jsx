@@ -26,7 +26,7 @@ export default function CommentForm({ onCommentCreated }) {
 
     return (
         <div className="CommentFormContainer">
-            <form className='CommentForm' onSubmit={handleSubmit}>
+            <form className="CommentForm" onSubmit={handleSubmit}>
                 <img className='CommentFormImage' alt="" src={user?.profilePicture ?
                     user?.profilePicture : defaultProfileImage
                 } />

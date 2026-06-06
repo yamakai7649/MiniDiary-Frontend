@@ -5,7 +5,7 @@ import { editCall } from '../../actionCalls';
 import axios from "axios";
 import "./EditProfile.css"
 
-export default function EditProfile({setIsEditing}) {
+export default function EditProfile({setIsEditing, onProfileUpdated}) {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
     const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const navigate = useNavigate();
@@ -50,6 +50,14 @@ export default function EditProfile({setIsEditing}) {
                 usernameRef.current.reportValidity();
                 return;
             }
+            if (username !== user?.username) {
+                const existingUser = await axios.get(`/auth?username=${username}`);
+                if (existingUser.data.length) {
+                    usernameRef.current.setCustomValidity("そのユーザー名はすでに使われています。");
+                    usernameRef.current.reportValidity();
+                    return;
+                }
+            }
             if (file) {
                 const data = new FormData();
                 data.append("file", file);
@@ -65,13 +73,15 @@ export default function EditProfile({setIsEditing}) {
                 }
                 const updated = await axios.put(`/users/${user?._id}`, { username, desc, profilePicture: imageUrl, profilePictureId: imageId });
                 await editCall(updated.data, dispatch);
+                onProfileUpdated?.(updated.data);
                 setIsEditing(false);
-                return navigate(`/profile/${username}`);
+                return navigate(`/profile/${updated.data.username}`, { replace: true });
             }
             const updated = await axios.put(`/users/${user?._id}`, { username, desc });
             await editCall(updated.data, dispatch);
+            onProfileUpdated?.(updated.data);
             setIsEditing(false);
-            navigate(`/profile/${username}`);
+            navigate(`/profile/${updated.data.username}`, { replace: true });
         } catch (err) {
             console.log(err);
             navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });

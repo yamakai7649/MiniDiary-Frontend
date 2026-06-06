@@ -1,6 +1,6 @@
 .SearchContainer {
-    margin-left: 15rem;
-    width: calc(100% - 15rem);
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
     display: flex;
     flex-direction: column;
     animation: fadeInUp 0.35s ease-out forwards;
@@ -134,8 +134,8 @@
 
 @media (max-width:840px) {
     .SearchContainer {
-        margin-left: 5rem;
-        width: calc(100% - 5rem);
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
     }
 
     .SearchFormHeading,
@@ -168,6 +168,6 @@
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 }

@@ -10,17 +10,19 @@
 
 .errorButton {
     padding: 0.6rem 1.5rem;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
+    border: 0.075rem solid rgb(210, 210, 210);
+    border-radius: 0.4rem;
     cursor: pointer;
     text-decoration: none;
     font-size: 0.9rem;
     font-family: inherit;
-    transition: background-color 0.2s ease;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .errorButton:hover {
-    background-color: rgb(57, 56, 56);
+    background-color: rgb(247, 247, 247);
+    border-color: rgb(180, 180, 180);
 }
