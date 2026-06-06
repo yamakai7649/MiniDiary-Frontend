@@ -6,11 +6,10 @@ export const fetchSessionUser = createAsyncThunk(
     async (_, ThunkAPI) => {
         try {
             const res = await axios.get("/auth/user",{ withCredentials: true });
-            //console.log(res);
             if (!res) return null;
             return res.data;
         } catch (err) {
-            return ThunkAPI.rejectWithValue(err.res.data);
+            return ThunkAPI.rejectWithValue(err.response?.data);
         }
 });
 
@@ -22,12 +21,12 @@ const AuthReducer = createSlice({
         error: false
     },
     reducers: {
-        loginSuccess(state, { type, payload }) {
+        loginSuccess(state, { payload }) {
             state.user = payload;
             state.isFetching = false;
             state.error = false;
         },
-        loginError(state, { type, payload }) {
+        loginError(state, { payload }) {
             state.user = null;
             state.isFetching = false;
             state.error = payload;
@@ -37,7 +36,7 @@ const AuthReducer = createSlice({
             state.isFetching = false;
             state.error = false;
         },
-        logoutError(state, { type, payload }) {
+        logoutError(state, { payload }) {
             state.isFetching = false;
             state.error = payload;
         },

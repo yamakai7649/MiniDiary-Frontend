@@ -14,7 +14,8 @@ export default function PostTimeline({ username, profileTab }) {
   const [posts, setPosts] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+  const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
   const user = useSelector((state) => state.AuthReducer.user);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -25,6 +26,7 @@ export default function PostTimeline({ username, profileTab }) {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchPosts = async () => {
       try {
         let res;
@@ -42,7 +44,7 @@ export default function PostTimeline({ username, profileTab }) {
         console.log(err);
         navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
       } finally {
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 200);
       }
     };
     fetchPosts();
@@ -66,7 +68,7 @@ export default function PostTimeline({ username, profileTab }) {
         <div className="TimelineTop">
           {windowWidth <= 600 && (
             <Link className='linkWrapper' to={`/profile/${user?.username}`}>
-              <img className='TopbarProfile' alt="" src={user?.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} />
+              <img className='TopbarProfile' alt="" src={user?.profilePicture ? user?.profilePicture : defaultProfileImage} />
             </Link>
           )}
           <h2 className="TimelineTitle">タイムライン</h2>

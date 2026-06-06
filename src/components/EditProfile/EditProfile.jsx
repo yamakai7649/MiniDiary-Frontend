@@ -6,7 +6,8 @@ import axios from "axios";
 import "./EditProfile.css"
 
 export default function EditProfile({setIsEditing}) {
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+    const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => {
@@ -25,9 +26,12 @@ export default function EditProfile({setIsEditing}) {
 
 
     const selectFile = (e) => {
-        setFile(e.target.files[0]);
+        const selectedFile = e.target.files[0];
+        if (!selectedFile) return;
+
+        setFile(selectedFile);
         const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(selectedFile);
         reader.onload = () => {
             setPreview(reader.result);
         }
@@ -80,10 +84,10 @@ export default function EditProfile({setIsEditing}) {
                 <div className="EditProfileTop">
                     <h3 className="EditProfileTopBack" onClick={()=> setIsEditing(false)}>←</h3>
                     <h3 className="EditProfileTopHeading">プロフィール編集</h3>
-                    <div className="EditProfileTopSave" onClick={handleEdit}>保存</div>
+                    <button type="button" className="EditProfileTopSave" onClick={handleEdit}>保存</button>
                 </div>
                 <div className="EditProfileIcon">
-                    <img src={preview ? preview : user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="EditProfileIconImage" onClick={openFileDialog} />
+                    <img src={preview ? preview : user.profilePicture ? user?.profilePicture : defaultProfileImage} alt="" className="EditProfileIconImage" onClick={openFileDialog} />
                     <input type="file" id="ProfileIcon" style={{display:"none"}} ref={fileInputRef} onChange={selectFile}/>
                 </div>
                 <div className="EditProfileName">

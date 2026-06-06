@@ -12,11 +12,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 export default function Notification() { 
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+    const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [notifications, setNotifications] = useState();
-    const [requests, setRequests] = useState();
+    const [notifications, setNotifications] = useState([]);
+    const [requests, setRequests] = useState([]);
     const [activeTab, setActiveTab] = useState("notification");
     const user = useSelector((state) => {
         return state.AuthReducer.user;
@@ -29,38 +30,37 @@ export default function Notification() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const fetchNotifications = async () => {
-        if (user) {
-            const res = await axios.get(`/notification?userId=${user?._id}`);
-            const notifications = res.data.filter((data) => data.type === "like" || data.type === "comment");
-            const requests = res.data.filter((data) => data.type === "follow");
-            setNotifications(notifications);
-            setRequests(requests);
-            return;
-        }
-    }
-    
+    const applyNotifications = (data) => {
+        setNotifications(data.filter(d => d.type === "like" || d.type === "comment"));
+        setRequests(data.filter(d => d.type === "follow"));
+    };
+
     useEffect(() => {
-        try {
-            fetchNotifications();
-        } catch (err) {
-            console.log(err);
-            navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
-        } finally {
-            setIsLoading(false);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user?._id, navigate]);
+        const fetchNotifications = async () => {
+            try {
+                if (!user) return;
+                const res = await axios.get("/notification");
+                applyNotifications(res.data);
+            } catch (err) {
+                console.log(err);
+                navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchNotifications();
+    }, [user, navigate]);
 
     const handleDelete = async (id) => {
         try {
             await axios.delete(`/notification?notificationId=${id}`);
-            fetchNotifications();
+            const res = await axios.get("/notification");
+            applyNotifications(res.data);
         } catch (err) {
             console.log(err);
             navigate("/error", { state: { message: "予期しないエラーが発生しました。もう一度お試しください。" } });
         }
-    }
+    };
 
     return (
         <>
@@ -69,9 +69,9 @@ export default function Notification() {
                 <div className="Notifications">
                     {windowWidth <= 600 ?
                         <div className="NotificationTop">
-                            <Link className='linkWrapper' to={`/profile/${user?.username}`} style={{ textDecoration: "none", color: "black" }}>
+                            <Link className='linkWrapper' to={`/profile/${user?.username}`}>
                                 <img className='TopbarProfile' alt="" src={user?.profilePicture ?
-                                    user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"
+                                    user?.profilePicture : defaultProfileImage
                                 } />
                             </Link>
                             <h2 className="NotificationTitle">通知</h2>
@@ -93,7 +93,7 @@ export default function Notification() {
                     <div className="NotificationContainer2" key={activeTab}>
                         {activeTab === "notification" ?
                         notifications && notifications.length ? notifications
-                            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((notification) => {
                                 return (
                                     <Link className='NotificationLinkWrapper' to={`/comment/${notification.postId}`} key={notification._id}>
@@ -108,7 +108,7 @@ export default function Notification() {
                                 )
                             }) : <h2 className='noNotification'>通知はありません</h2> :
                         requests && requests.length ? requests
-                            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((request) => {
                                 return (
                                     <Link className='NotificationLinkWrapper' to={`/profile/${request.usernameOfFollower}`} key={request._id}>

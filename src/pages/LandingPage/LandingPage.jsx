@@ -12,7 +12,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
     width:100vw;
     height:100vh;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${({ imagePath }) => imagePath});
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${({ imagePath }) => imagePath});
     background-size: cover;
     background-position: center;
     animation: ${fadeIn} 0.8s ease-out forwards;
@@ -73,7 +73,7 @@ const Description = styled.h3`
 `
 
 export default function LandingPage() {
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
     const imagePath = PUBLIC_FOLDER + "background/diary.jpg";
     const navigate = useNavigate();
 

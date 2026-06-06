@@ -8,15 +8,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Search() {
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const inputRef = useRef();
     const navigate = useNavigate();
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+    const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const user = useSelector((state) => {
       return state.AuthReducer.user;
     });
-    const [value, setValue] = useState();
+    const [value, setValue] = useState("");
 
     useEffect(() => {
         const fetchRandomUser = async () => {
@@ -63,12 +64,12 @@ export default function Search() {
                     <p className="SearchRecommendationTop">おすすめユーザー</p>
                     {isLoading ? <div className="SearchSpinner"><Spinner></Spinner></div> :
                         <div className="SearchRecommendationPeople">
-                            {users?.map((user) => (
+                            {users.map((user) => (
                                 <Link to={`/profile/${user.username}`} style={{ color: "inherit", textDecoration: "none" }} key={user._id}>
                                     <div className="SearchRecommendationPersonContainer" >
                                         <div className="SearchRecommendationPerson">
                                             <img src={user?.profilePicture ?
-                                                user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="SearchRecommendationPersonIcon" />
+                                                user?.profilePicture : defaultProfileImage} alt="" className="SearchRecommendationPersonIcon" />
                                             <div className="SearchRecommendationPersonMain">
                                                 <div className="SearchRecommendationPersonUsername">{user.username}</div>
                                                 <div className="SearchRecommendationPersonFollow">

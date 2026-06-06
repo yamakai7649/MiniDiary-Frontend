@@ -191,6 +191,12 @@
     color: #394091;
 }
 
+.PostTopTopBackLink {
+    text-decoration: none;
+    color: inherit;
+    width: 0;
+}
+
 .postLinkWrapper {
     text-decoration: none;
     color: inherit;

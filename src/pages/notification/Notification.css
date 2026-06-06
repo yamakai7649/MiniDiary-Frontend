@@ -129,9 +129,9 @@
 }
 
 .noNotification {
-    margin: 0 auto;
+    width: 100%;
     text-align: center;
-    margin-top: 19rem;
+    margin-top: calc(45vh - 100px);
 }
 
 .NotificationSpinner {

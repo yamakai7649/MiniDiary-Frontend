@@ -34,7 +34,7 @@ export default function CommentTimeline({ username }) {
         console.log(err);
         navigate("/error", { state: { message: "データの取得に失敗しました。後ほど再試行してください。" } });
       } finally {
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 200);
       }
     };
 
@@ -64,7 +64,7 @@ export default function CommentTimeline({ username }) {
           <Post post={post} comment={true} username={username} />
         </div>
       )}
-      {!isLoading && <CommentForm comment={true} onCommentCreated={handleCommentCreated} />}
+      {!isLoading && <CommentForm onCommentCreated={handleCommentCreated} />}
       {!isLoading && (
         <div className="Comment">
           <div className="CommentNumber">

@@ -11,7 +11,8 @@ import EditProfile from '../../components/EditProfile/EditProfile';
 import Spinner from '../../components/Spinner/Spinner';
 
 export default function Profile({ comment }) {
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+    const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const [user, setUser] = useState({});
     const [profileTab, setProfileTab] = useState("diary");
     const [isEditing, setIsEditing] = useState(false);
@@ -26,7 +27,6 @@ export default function Profile({ comment }) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                //console.log(username);
                 const res = await axios.get(`/users?username=${username}`);
                 setUser(res.data);
             } catch (err) {
@@ -58,10 +58,10 @@ export default function Profile({ comment }) {
 
         try {
             if (!isFollow) {
-                const res = await axios.put(`/users/${username}/follow`, { username: currentUser.username });
+                const res = await axios.put(`/users/${username}/follow`);
                 await followCall(res.data, dispatch);
             } else {
-                const res = await axios.put(`/users/${username}/unfollow`, { username: currentUser.username });
+                const res = await axios.put(`/users/${username}/unfollow`);
                 await unfollowCall(res.data, dispatch);
             }
             const res = await axios.get(`/users?username=${username}`);
@@ -95,7 +95,7 @@ export default function Profile({ comment }) {
                         <div className="ProfileLightTop">
                             <div className="ProfileLightTopUser">
                                 <div className="ProfileLightTopDetails">
-                                    <img className='ProfileLightTopIcon' src={user.profilePicture ? user?.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" />
+                                    <img className='ProfileLightTopIcon' src={user.profilePicture ? user?.profilePicture : defaultProfileImage} alt="" />
                                     <h2 className='ProfileLightTopName'>{user.username}</h2>
                                     <div className="ProfileLightTopFollowDisp">
                                         <div>
@@ -114,14 +114,16 @@ export default function Profile({ comment }) {
 
                         </div>
                         <div className="ProfileLightBottom">
-                            <div className="ProfileTop">
-                                <div className="ProfileSwitch">
-                                    <div onClick={() => setProfileTab("diary")} className={profileTab === "diary" ? "DiaryButtonActive" : "DiaryButton"}>日記</div>
-                                    <div onClick={() => setProfileTab("like")} className={profileTab === "like" ? "ProfileButtonActive" : "ProfileButton"}>いいね</div>
+                            {!comment && (
+                                <div className="ProfileTop">
+                                    <div className="ProfileSwitch">
+                                        <div onClick={() => setProfileTab("diary")} className={profileTab === "diary" ? "DiaryButtonActive" : "DiaryButton"}>日記</div>
+                                        <div onClick={() => setProfileTab("like")} className={profileTab === "like" ? "ProfileButtonActive" : "ProfileButton"}>いいね</div>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                             <div className="ProfileLightBottomTimeline">
-                                {comment ? <Timeline comment username={username}></Timeline> : <Timeline profileTab={profileTab} username={username}></Timeline>}
+                                {comment ? <Timeline comment username={username} /> : <Timeline profileTab={profileTab} username={username} />}
                             </div>
                         </div>
                     </div>

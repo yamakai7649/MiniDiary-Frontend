@@ -43,9 +43,12 @@ export default function Diary({ closeModal, onPostCreated }) {
     }
 
     const selectFile = (e) => {
-        setFile(e.target.files[0]);
+        const selectedFile = e.target.files[0];
+        if (!selectedFile) return;
+
+        setFile(selectedFile);
         const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(selectedFile);
         reader.onload = () => {
             setPreview(reader.result);
         }

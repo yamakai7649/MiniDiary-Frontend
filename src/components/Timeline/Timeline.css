@@ -136,18 +136,11 @@
     color: white;
 }
 
-.ProfileNoDiary {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
+.ProfileNoDiary,
 .TimelineNoDiary {
-    margin: auto 0;
-    margin-top: 22.75rem;
+    width: 100%;
     text-align: center;
+    margin-top: calc(45vh - 100px);
 }
 
 .PostTimelineSpinner {

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import axios from "axios";
 import "./Register.css"
 import { useNavigate, Link } from "react-router-dom";

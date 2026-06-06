@@ -13,7 +13,7 @@ export class ErrorBoundary extends React.Component{
     render() {
     if (this.state.hasError) {
         return (
-            <div> className="errorContainer"
+            <div className="errorContainer">
                 <span className='errorMessage'>予期しないエラーが発生しました。もう一度お試しください。</span>
             </div>
         );

@@ -12,7 +12,8 @@ import Menu from '../Menu/Menu';
 
 export default function Sidebar() {
     const location = useLocation();
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "/images/";
+    const defaultProfileImage = PUBLIC_FOLDER + "person/noAvatar.png";
     const [isMenuOpen, setMenuOpen] = useState(false);
     const user = useSelector((state) => {
         return state.AuthReducer.user;
@@ -74,7 +75,7 @@ export default function Sidebar() {
                 <Link className={`linkWrapper ${isProfileActive ? 'active' : ''}`} to={`/profile/${user?.username}`} >
                 <div className="SidebarProfile">
                     <img className='SidebarProfileImg' alt="" src={user?.profilePicture ?
-                   user?.profilePicture : PUBLIC_FOLDER + "person/noAvatar.png"
+                   user?.profilePicture : defaultProfileImage
                } />
                             <span className="SidebarProfileButton">{user?.username}</span>                      
                 </div>
